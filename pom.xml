@@ -23,6 +23,7 @@
     <commons-fileupload.version>1.2.1</commons-fileupload.version>
     <commons-io.version>1.4</commons-io.version>
     <httpclient.version>4.5.2</httpclient.version>
+    <druid.version>1.0.28</druid.version>
 
   </properties>
 
@@ -55,6 +56,15 @@
       <groupId>com.mchange</groupId>
       <artifactId>c3p0</artifactId>
       <version>${c3p0.version}</version>
+    </dependency>
+
+
+    <!-- ################## druid #################-->
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>${druid.version}</version>
     </dependency>
 
     <!-- ################## Spring ################## -->
