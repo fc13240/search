@@ -10,22 +10,18 @@
                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
-    <context:property-placeholder location="config/db.properties"/>
-    <mongo:mongo id="mongo" replica-set="${mongo.hostport}">
-        <mongo:options
+    <context:property-placeholder location="classpath:config/db.properties"/>
+    <mongo:mongo-client id="mongo" replica-set="${mongo.hostPort}">
+        <mongo:client-options
                 connections-per-host="${mongo.connectionsPerHost}"
                 threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
                 connect-timeout="${mongo.connectTimeout}"
                 max-wait-time="${mongo.maxWaitTime}"
-                auto-connect-retry="${mongo.autoConnectRetry}"
                 socket-keep-alive="${mongo.socketKeepAlive}"
                 socket-timeout="${mongo.socketTimeout}"
-                slave-ok="${mongo.slaveOk}"
-                write-number="1"
-                write-timeout="0"
-                write-fsync="true" />
-    </mongo:mongo>
-    <mongo:db-factory dbname="${mongo.dbname}" mongo-ref="mongo"/>
+                 />
+    </mongo:mongo-client>
+    <mongo:db-factory dbname="${mongo.databaseName}" mongo-ref="mongo"/>
 <!--    <bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext"/>
     <bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
         <constructor-arg name="typeKey">
@@ -39,7 +35,7 @@
     </bean>-->
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="${mongo.dbname}"/>
+        <constructor-arg name="databaseName" value="${mongo.databaseName}"/>
     </bean>
 
     
