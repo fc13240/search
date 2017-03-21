@@ -2,5 +2,6 @@
 <html>
 <body>
 <h2>Hello World! 项目搭建完成</h2>
+${a}
 </body>
 </html>

@@ -11,7 +11,7 @@
 
 
     <context:property-placeholder location="classpath:config/db.properties"/>
-    <mongo:mongo-client id="mongo" replica-set="${mongo.hostPort}">
+    <mongo:mongo-client id="mongo" host="${mongo.labTop}" port="${mongo.port}">
         <mongo:client-options
                 connections-per-host="${mongo.connectionsPerHost}"
                 threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
@@ -35,8 +35,14 @@
     </bean>-->
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongo" ref="mongo"/>
-        <constructor-arg name="databaseName" value="${mongo.databaseName}"/>
+        <!--<constructor-arg name="databaseName" value="${mongo.databaseName}"/>-->
+        <constructor-arg name="databaseName" value="${mongo.labTopdatabaseName}"/>
     </bean>
+
+<!--    <bean id="searchDao" class="com.search.dao.impl.SearchPatentImpl">
+        <property name="mongoTemplate" ref="mongoTemplate"/>
+    </bean>-->
+    <mongo:mapping-converter base-package="com.search.dao"/>
 
     
 </beans>
